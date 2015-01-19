@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AllowNetworkAccess</key>
+	<true/>
+	<key>AllowSystem</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string>MailWidget</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.kwasi-ich.widget.MailWidget</string>
+	<key>CFBundleName</key>
+	<string>MailWidget</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.61</string>
+	<key>CFBundleVersion</key>
+	<string>3.61</string>
+	<key>CloseBoxInsetX</key>
+	<integer>24</integer>
+	<key>CloseBoxInsetY</key>
+	<integer>33</integer>
+	<key>Height</key>
+	<integer>160</integer>
+	<key>MainHTML</key>
+	<string>main.html</string>
+	<key>Plugin</key>
+	<string>MailWidgetPlugin.widgetplugin</string>
+	<key>Width</key>
+	<integer>160</integer>
+</dict>
+</plist>

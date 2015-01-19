@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="Parts/Transitions.css">
+    <script type="text/javascript" src="Parts/parts.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleAnimator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleInfoButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="localizedStrings.js" charset="utf-8"></script>
+    <script type="text/javascript" src="main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/Shape.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleScrollbar.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleScrollArea.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Parts/ButtonHandler.js" charset="utf-8"></script>
+    <script type="text/javascript" src="GUI.js" charset="utf-8"></script>
+    <script type="text/javascript" src="md5.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Classes/MailAccounts.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Classes/ExchangeClient.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Classes/ImapClient.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Classes/PopClient.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Classes/Sleep.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Classes/AutoUpdate.js" charset="utf-8"></script>
+</head>
+<body onload="load();" onpaste="UIpaste(event)" onkeydown="UIcaptureKeyEvent(event)" onkeyup="UIcaptureKeyEvent(event)">
+    <div id="front">
+        <div id="frontImg"></div>
+        <div id="nameText" ondblclick="UIeditName(event)"></div>
+        <form onsubmit="UIchangeName(event)">
+            <input type="text" name="" value="" id="nameTextfield">
+        </form>
+        <div id="info"></div>
+        <div id="activityIndicator"></div>
+        <div id="noConnection"></div>
+        <div id="newMailBadge">
+            <div id="newMailBadgeCount"></div>
+            <div id="newMailBadgeShowHeader" onmouseout="UIshowMailHeader(event)" onmouseover="UIshowMailHeader(event)"></div>
+        </div>
+        <div id="mailHeader">
+            <div id="mailHeaderFromCaption"></div>
+            <div id="mailHeaderSubjectCaption"></div>
+            <div id="mailHeaderFrom"></div>
+            <div id="mailHeaderSubject"></div>
+        </div>
+        <div id="launchMail" onclick="UIlaunchMail(event)" ondrop="UIpaste(event)" ondragenter="UIlaunchMailDrag(event)" ondragover="UIlaunchMailDrag(event)"></div>
+        <div id="updateNotification">
+            <img src="Images/UpdateLarge.png" id="updateNotificationImage">
+            <div id="updateNotificationSkipButton"></div>
+            <div id="updateNotificationUpdateButton"></div>
+            <div id="updateNotificationText"></div>
+            <div id="updateNotificationLink" onclick="UIgoToUpdate(event)"></div>
+            <div id="updateNotificationReboot">
+                <div id="updateNotificationRebootText"></div>
+            </div>
+        </div>
+        <div id="zoomButton" onclick="UItoggleMini(event)"></div>
+    </div>
+    <div id="back">
+        <img id="backImg" src="Parts/Images/back.png" alt="">
+        <div id="done"></div>
+        <div id="centerButton">
+            <div id="accountSelectorButton"></div>
+        </div>
+        <div id="settingsBackground"></div>
+        <div id="settingsTab1"></div>
+        <div id="settingsTab2"></div>
+        <div id="settingsTab3"></div>
+        <div id="settingsTab4"></div>
+        <div id="doCheckInterval" onclick="UIshowCheckIntervalSettings(event)"></div>
+        <div id="doAnnounce" onclick="UIshowAudioPlayerSettings(event)"></div>
+        <div id="doAutoUpdate" onclick="UIshowUpdateSettings(event)"></div>
+        <div id="doGrowl" onclick="UIshowGrowlSettings(event)"></div>
+        <div id="settingsStackLayout"><div id="checkIntervalSettings">
+                <div id="checkOnShow">
+                    <input type="checkbox" name="" id="checkOnShowButton" value="" style="" onchange="UIchangeCheckOnShow(event)">
+                    <div id="checkOnShowCaption">Beim Öffnen von Dashboard</div>
+                </div>
+                <input type="range" min="0" value="15" max="60" id="checkIntervalSlider" oninput="UIchangeCheckInterval(event)">
+                <div id="checkIntervalCaption"></div>
+            </div><div id="audioPlayerSettings">
+                <div id="audioPlayerVolumeCaption"></div>
+                <input type="range" min="0" value="100" max="100" id="audioPlayerVolume" oninput="UIchangeVolume(event)" onmouseup="UIplayAudio(event)" onmousedown="UIblurAudio(event)">
+                <div id="audioPlayerDropBox" ondrop="UIpaste(event)" ondragenter="UIaudioDragEnter(event)" ondragover="UIaudioDragOver(event)" ondragleave="UIaudioDragLeave(event)" onclick="UIfocusAudio(event)" ondblclick="UIresetAudio(event)"></div>
+            </div><div id="updateSettings">
+                <div id="updateCheckbox">
+                    <input type="checkbox" name="" id="updateCheckboxButton" value="" checked="checked" onchange="UIchangeAutoUpdate(event)">
+                    <div id="updateCheckboxCaption">Auto Update</div>
+                </div>
+                <div id="centerUpdateButton">
+                    <div id="checkForUpdateButton"></div>
+                </div>
+            </div><div id="growlSettings">
+                <div id="growlCheckbox">
+                    <input type="checkbox" name="Checkbox" checked="checked" id="growlCheckboxButton" onchange="UIchangeGrowl(event)">
+                    <div id="growlCheckboxCaption">Growl</div>
+                </div>
+                <div id="text1" onclick="UIgoToGrowl(event)"></div>
+            </div></div>
+        <div id="versionString">x.xx</div>
+        <div id="accountSelector">
+            <div id="accountCaption"></div>
+            <div id="accountSelectorDoneButton"></div>
+            <div id="accountSelectorScrollArea">
+                <div id="accountSelectorScrollAreaContent" class="content" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow-x: hidden; overflow-y: hidden; ">
+                    <ul id="list">
+                        <li id="accountSelectorListRowTemplate" class="accountSelectorListRowTemplate_template first">
+                            <div id="accountSelectorListLabel" class="accountSelectorListLabel_template"></div>
+                            <div class="accountSelectorListIndicator_template" id="accountSelectorListIndicator"></div>
+                        </li>
+                    </ul>
+                </div></div>
+            <div id="verifyAccount">
+                <div id="verifyAccountPasswordCaption"></div>
+                <form onsubmit="UIperformVerifyAccount(event)">
+                    <input type="password" name="" value="" id="verifyAccountPassword">
+                </form>
+                <div id="verifyAccountVerifyButton"></div>
+                <div id="verifyAccountStatusIndicator"></div>
+                <div id="verifyAccountCancelButton"></div>
+                <div id="disabled_verifyAccountRemoveButton"></div>
+                <div id="verifyAccountName"></div>
+            </div>
+        </div>
+    </div>
+    <div id="mini">
+        <img src="Default.png" id="frontImgMini">
+        <div id="noConnectionMini"></div>
+        <div id="newMailBadgeMini">
+            <div id="newMailBadgeCountMini" onclick="collectiveCheckMail(event)"></div>
+        </div>
+        <div id="launchMailMini" onclick="UIlaunchMail(event)" ondrop="UIpaste(event)" ondragenter="UIlaunchMailDrag(event)" ondragover="UIlaunchMailDrag(event)"></div>
+        <div id="zoomButtonMini" onclick="UItoggleMini(event)"></div>
+    </div>
+    <div id="stuff">
+        <div id="text"></div>
+    </div>
+</body>
+</html>

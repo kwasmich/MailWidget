@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'MailWidgetPlugin' target in the 'MailWidgetPlugin' project.
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+	#import <WebKit/WebKit.h>
+	#import <Security/Security.h>
+	#import <Growl/Growl.h>
+	#import "Mail.h"
+#endif
