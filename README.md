@@ -1,0 +1,2 @@
+# MailWidget
+MailWidget for Dashboard
